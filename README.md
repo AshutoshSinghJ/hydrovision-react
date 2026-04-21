@@ -17,6 +17,7 @@ A React-based frontend dashboard for the HydroVision IoT Water Quality Monitorin
 ### Dashboard Overview
 
 ![Dashboard](./public/screenshots/dashboard_light.png)
+![Dashboard](./public/screenshots/dashboard_dark.png)
 
 ### Species Compatibility Table
 
