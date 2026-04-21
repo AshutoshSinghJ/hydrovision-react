@@ -9,6 +9,7 @@ A React-based frontend dashboard for the HydroVision IoT Water Quality Monitorin
 ## 🖥️ Live Demo
 
 🔗 https://hydrovision-react.vercel.app/
+📂 GitHub: https://github.com/AshutoshSinghJ/hydrovision-react
 
 ---
 
@@ -16,7 +17,6 @@ A React-based frontend dashboard for the HydroVision IoT Water Quality Monitorin
 
 ### Dashboard Overview
 
-![Dashboard](./public/screenshots/dashboard_light.png)
 ![Dashboard](./public/screenshots/dashboard_dark.png)
 
 ### Species Compatibility Table
@@ -31,78 +31,71 @@ A React-based frontend dashboard for the HydroVision IoT Water Quality Monitorin
 
 ## 🌟 Features
 
-* ⚡ **Simulated live sensor updates** every 3 seconds (mock data)
-* 📊 **Real-time line chart** for temperature, TDS, and turbidity trends
-* 🐠 **Species compatibility system** — dynamically evaluates safe, marginal, and incompatible species
-* ✅ **Auto-classified species lists** based on real-time water conditions
+* ⚡ **Simulated real-time sensor updates** every 3 seconds (mock IoT data)
+* 📊 **Interactive charts** for temperature, TDS, and turbidity trends
+* 🐠 **Species compatibility system** — evaluates safe, marginal, and incompatible species
+* ✅ **Dynamic classification** based on current environmental conditions
+* 🧩 **Component-based architecture** with reusable and modular UI design
 * 🌙 **Dark/Light mode toggle**
-* 📱 **Fully responsive dashboard layout**
+* 📱 **Responsive dashboard layout**
 
 ---
 
 ## 🧰 Tech Stack
 
-| Category  | Technology                             |
-| --------- | -------------------------------------- |
-| Framework | React 18 (Vite)                        |
-| Charts    | Recharts                               |
-| Styling   | CSS Variables + Google Fonts           |
-| Data      | Mock data (Firebase integration ready) |
+| Category  | Technology                                    |
+| --------- | --------------------------------------------- |
+| Framework | React 18 (Vite)                               |
+| Charts    | Recharts                                      |
+| Styling   | CSS Variables + Google Fonts                  |
+| Data      | Mock data (designed for Firebase integration) |
 
 ---
 
 ## ⚙️ How It Works
 
-1. `generateLiveSensorData()` simulates ESP32 sensor readings every 3 seconds
-2. `App.jsx` manages global state: sensor readings and chart history
-3. Components receive sensor data as props and re-render dynamically
-4. `getCompatibility()` in `mockData.js` evaluates species based on live conditions
+1. `generateLiveSensorData()` simulates ESP32-like sensor readings every 3 seconds
+2. `App.jsx` manages global state for sensor data and chart history using `useState`
+3. `useEffect` triggers periodic updates for live data simulation
+4. Components receive data via props and re-render dynamically
+5. `getCompatibility()` evaluates species based on live conditions
 
 ---
 
 ## 🧩 Component Architecture
 
-```
+```id="v9f6kp"
 App.jsx
-├── SensorCard       — displays individual metrics (Temp / TDS / Turbidity / Quality)
-├── SensorChart      — Recharts line chart for historical trends
-├── SpeciesTable     — compatibility table with dynamic status badges
-└── SafeSpecies      — categorized safe / marginal / incompatible species
-    └── StatusBadge  — reusable colored badge component
+├── SensorCard       — displays metrics (Temp / TDS / Turbidity / Quality)
+├── SensorChart      — Recharts line chart for trends
+├── SpeciesTable     — compatibility table with status badges
+└── SafeSpecies      — categorized species lists
+    └── StatusBadge  — reusable UI component
 ```
 
 ---
 
 ## 🛠️ Setup
 
-```bash
-# 1. Clone
+```bash id="z3w8yb"
+# Clone repository
 git clone https://github.com/AshutoshSinghJ/hydrovision-react.git
 cd hydrovision-react
 
-# 2. Install dependencies
+# Install dependencies
 npm install
 
-# 3. Run locally
+# Run locally
 npm run dev
 ```
 
 ---
 
-## 🔌 Firebase Integration (Future Scope)
+## 🔌 Future Improvements
 
-To connect real ESP32 sensor data, replace `generateLiveSensorData()` in `App.jsx` with:
-
-```js
-import { initializeApp } from "firebase/app";
-import { getDatabase, ref, onValue } from "firebase/database";
-
-const db = getDatabase(app);
-
-onValue(ref(db, "sensors/latest"), (snapshot) => {
-  setSensor(snapshot.val());
-});
-```
+* Integrate Firebase for real-time ESP32 sensor data
+* Add filtering/search for species compatibility
+* Backend API integration for scalable data handling
 
 ---
 
