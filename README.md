@@ -7,29 +7,46 @@ A React-based frontend dashboard for the HydroVision IoT Water Quality Monitorin
 ---
 
 ## 🖥️ Live Demo
-https://hydrovision-react.vercel.app/
+
+🔗 https://hydrovision-react.vercel.app/
+
+---
+
+## 📸 Screenshots
+
+### Dashboard Overview
+
+![Dashboard](./public/screenshots/dashboard_light.png)
+
+### Species Compatibility Table
+
+![Species Table](./public/screenshots/species_light.png)
+
+### Safe vs Unsafe Species
+
+![Safe Unsafe](./public/screenshots/safe-unsafe_light.png)
 
 ---
 
 ## 🌟 Features
 
-- ⚡ **Simulated live sensor updates** every 3 seconds (mock data)
-- 📊 **Real-time line chart** for temperature, TDS, and turbidity trends
-- 🐠 **Species compatibility table** — dynamically updates with sensor readings
-- ✅ **Safe/Unsafe species lists** — auto-categorized by current water conditions
-- 🌙 **Dark/Light mode toggle**
-- 📱 **Fully responsive** layout
+* ⚡ **Simulated live sensor updates** every 3 seconds (mock data)
+* 📊 **Real-time line chart** for temperature, TDS, and turbidity trends
+* 🐠 **Species compatibility system** — dynamically evaluates safe, marginal, and incompatible species
+* ✅ **Auto-classified species lists** based on real-time water conditions
+* 🌙 **Dark/Light mode toggle**
+* 📱 **Fully responsive dashboard layout**
 
 ---
 
 ## 🧰 Tech Stack
 
-| Category     | Technology                          |
-|--------------|-------------------------------------|
-| Framework    | React 18 (Vite)                     |
-| Charts       | Recharts                            |
-| Styling      | CSS Variables + Google Fonts        |
-| Data         | Mock data (Firebase integration ready) |
+| Category  | Technology                             |
+| --------- | -------------------------------------- |
+| Framework | React 18 (Vite)                        |
+| Charts    | Recharts                               |
+| Styling   | CSS Variables + Google Fonts           |
+| Data      | Mock data (Firebase integration ready) |
 
 ---
 
@@ -37,17 +54,19 @@ https://hydrovision-react.vercel.app/
 
 1. `generateLiveSensorData()` simulates ESP32 sensor readings every 3 seconds
 2. `App.jsx` manages global state: sensor readings and chart history
-3. Components receive sensor data as props and re-render automatically
-4. `getCompatibility()` in `mockData.js` evaluates each species against live readings
+3. Components receive sensor data as props and re-render dynamically
+4. `getCompatibility()` in `mockData.js` evaluates species based on live conditions
 
-### Component Architecture
+---
+
+## 🧩 Component Architecture
 
 ```
 App.jsx
-├── SensorCard       — displays individual metric (Temp / TDS / Turbidity / Quality)
-├── SensorChart      — Recharts line chart of historical readings
+├── SensorCard       — displays individual metrics (Temp / TDS / Turbidity / Quality)
+├── SensorChart      — Recharts line chart for historical trends
 ├── SpeciesTable     — compatibility table with dynamic status badges
-└── SafeSpecies      — categorised safe / marginal / incompatible species lists
+└── SafeSpecies      — categorized safe / marginal / incompatible species
     └── StatusBadge  — reusable colored badge component
 ```
 
@@ -60,16 +79,16 @@ App.jsx
 git clone https://github.com/AshutoshSinghJ/hydrovision-react.git
 cd hydrovision-react
 
-# 2. Install
+# 2. Install dependencies
 npm install
 
-# 3. Run
+# 3. Run locally
 npm run dev
 ```
 
 ---
 
-## 🔌 Firebase Integration (Future)
+## 🔌 Firebase Integration (Future Scope)
 
 To connect real ESP32 sensor data, replace `generateLiveSensorData()` in `App.jsx` with:
 
@@ -78,6 +97,7 @@ import { initializeApp } from "firebase/app";
 import { getDatabase, ref, onValue } from "firebase/database";
 
 const db = getDatabase(app);
+
 onValue(ref(db, "sensors/latest"), (snapshot) => {
   setSensor(snapshot.val());
 });
@@ -87,6 +107,6 @@ onValue(ref(db, "sensors/latest"), (snapshot) => {
 
 ## 🙏 Acknowledgments
 
-- Original HydroVision project built with ESP32, Firebase, and Vanilla JS
-- Recharts for React-native chart components
-- Google Fonts (Space Mono + DM Sans)
+* Original HydroVision project built with ESP32, Firebase, and Vanilla JS
+* Recharts for React-based data visualization
+* Google Fonts (Space Mono + DM Sans)
