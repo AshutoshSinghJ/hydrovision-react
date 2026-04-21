@@ -1,0 +1,258 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+/* ── CSS Variables ───────────────────────────── */
+:root {
+  --teal:    #00c9a7;
+  --blue:    #4ea8de;
+  --warn:    #f4a261;
+  --danger:  #e63946;
+  --font-mono: 'Space Mono', monospace;
+  --font-body: 'DM Sans', sans-serif;
+}
+
+/* ── Reset ───────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Theme ───────────────────────────────────── */
+.app.dark {
+  --bg:        #061821;
+  --bg2:       #0d2233;
+  --bg3:       #122840;
+  --border:    rgba(0,201,167,0.15);
+  --text:      #e2f0f7;
+  --text-muted:#7a9aab;
+}
+.app.light {
+  --bg:        #f0f7fa;
+  --bg2:       #ffffff;
+  --bg3:       #e0edf5;
+  --border:    rgba(0,140,120,0.2);
+  --text:      #0a2030;
+  --text-muted:#4a7080;
+}
+
+/* ── Base ────────────────────────────────────── */
+.app {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  transition: background 0.3s, color 0.3s;
+}
+
+/* ── Header ──────────────────────────────────── */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.logo { font-size: 1.6rem; }
+.header h1 {
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  color: var(--teal);
+  letter-spacing: -0.5px;
+}
+.live-dot {
+  font-size: 0.7rem;
+  color: var(--teal);
+  font-family: var(--font-mono);
+  animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+.header nav { display: flex; gap: 1.5rem; }
+.header nav a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.header nav a:hover { color: var(--teal); }
+
+.dark-toggle {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.4rem 0.9rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-family: var(--font-body);
+  transition: background 0.2s;
+}
+.dark-toggle:hover { background: var(--bg); }
+
+/* ── Main ────────────────────────────────────── */
+.main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* ── Section titles ──────────────────────────── */
+.section-title {
+  font-size: 1.2rem;
+  font-family: var(--font-mono);
+  color: var(--teal);
+  margin-bottom: 0.2rem;
+}
+.section-sub {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+/* ── Sensor Grid ─────────────────────────────── */
+.sensor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+.sensor-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border-left-width: 3px;
+}
+.sensor-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0,201,167,0.1);
+}
+.sensor-icon { font-size: 1.4rem; }
+.sensor-label {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+.sensor-value {
+  font-family: var(--font-mono);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text);
+  display: flex;
+  align-items: baseline;
+  gap: 0.3rem;
+}
+.sensor-unit {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+.quality-card .sensor-value { font-size: 1rem; }
+
+/* ── Card ────────────────────────────────────── */
+.card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+.card h2 {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  color: var(--teal);
+  margin-bottom: 1.25rem;
+}
+
+/* ── Table ───────────────────────────────────── */
+.table-wrapper { overflow-x: auto; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+thead th {
+  text-align: left;
+  padding: 0.6rem 0.9rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+}
+tbody td {
+  padding: 0.7rem 0.9rem;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover { background: var(--bg3); }
+
+/* ── Status Badge ────────────────────────────── */
+.status-badge {
+  display: inline-block;
+  padding: 0.2rem 0.65rem;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  letter-spacing: 0.5px;
+}
+
+/* ── Safe / Unsafe ───────────────────────────── */
+.species-lists {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.25rem;
+}
+.species-group { display: flex; flex-direction: column; gap: 0.5rem; }
+.group-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+.group-title.safe     { color: var(--teal); }
+.group-title.marginal { color: var(--warn); }
+.group-title.unsafe   { color: var(--danger); }
+.species-group ul { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; }
+.species-group li {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  padding: 0.3rem 0.6rem;
+  background: var(--bg3);
+  border-radius: 6px;
+}
+
+/* ── Footer ──────────────────────────────────── */
+.footer {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.footer-note { font-size: 0.75rem; opacity: 0.6; }
+
+/* ── Scrollbar ───────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--teal); border-radius: 3px; }

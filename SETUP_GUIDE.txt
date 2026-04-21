@@ -1,0 +1,77 @@
+# SETUP GUIDE — Follow these steps exactly
+
+## Step 1: Create the Vite + React project
+
+Open terminal and run:
+
+npm create vite@latest hydrovision-react -- --template react
+cd hydrovision-react
+npm install
+npm install recharts
+
+
+## Step 2: Replace/create files
+
+Delete the contents of src/ folder, then create this structure:
+
+src/
+├── data/
+│   └── mockData.js          ← paste from Claude's file
+├── components/
+│   ├── SensorCard.jsx       ← paste from Claude's file
+│   ├── StatusBadge.jsx      ← paste from Claude's file
+│   ├── SpeciesTable.jsx     ← paste from Claude's file
+│   ├── SensorChart.jsx      ← paste from Claude's file
+│   └── SafeSpecies.jsx      ← paste from Claude's file
+├── App.jsx                  ← paste from Claude's file
+└── App.css                  ← paste from Claude's file
+
+Also replace index.css with an empty file (just delete its contents).
+
+
+## Step 3: Run it
+
+npm run dev
+
+Open http://localhost:5173 — you should see the dashboard.
+
+
+## Step 4: Push to GitHub
+
+git init
+git add .
+git commit -m "Initial React dashboard for HydroVision"
+git branch -M main
+git remote add origin https://github.com/AshutoshSinghJ/hydrovision-react.git
+git push -u origin main
+
+(Create the repo on GitHub first — call it hydrovision-react)
+
+
+## Step 5: Update your resume
+
+Add this line under Projects:
+
+HydroVision Dashboard (React) | ReactJS, Recharts, Vite, Component Architecture
+- Rebuilt original IoT dashboard from Vanilla JS to React using component-based architecture
+- Implemented live sensor simulation with useState/useEffect hooks updating every 3 seconds
+- Built reusable components: SensorCard, SpeciesTable, SensorChart, SafeSpecies
+- Designed with dark/light mode toggle and responsive layout
+
+
+## INTERVIEW ANSWERS
+
+Q: "Tell me about this React project"
+A: "I originally built HydroVision as a Vanilla JS dashboard pulling from Firebase.
+   I rebuilt it in React to learn component-based architecture.
+   Each sensor metric is its own SensorCard component. The species table and charts
+   re-render automatically whenever the sensor state updates — that's the core React pattern."
+
+Q: "Why did you use useState and useEffect?"
+A: "useState manages the current sensor readings and chart history.
+   useEffect runs a setInterval every 3 seconds to simulate live data —
+   in production this would be replaced by a Firebase onValue listener."
+
+Q: "What would you add next?"
+A: "Real Firebase integration, maybe add a filter component to let users
+   search species by temperature range — that's just controlled input state."
