@@ -7,7 +7,7 @@ A React-based frontend dashboard for the HydroVision IoT Water Quality Monitorin
 ---
 
 ## 🖥️ Live Demo
-Coming soon via Vercel/Netlify deployment.
+https://hydrovision-react.vercel.app/
 
 ---
 
