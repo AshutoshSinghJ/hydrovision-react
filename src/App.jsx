@@ -24,14 +24,38 @@ export default function App() {
           tds: newReading.tds,
           turbidity: newReading.turbidity,
         }];
-        return updated.slice(-10); // keep last 10 readings
+        return updated.slice(-10);
       });
     }, 3000);
     return () => clearInterval(interval);
   }, []);
 
+  // ✅ ALERT LOGIC (FIXED — based on quality)
+  const alerts = [];
+
+  if (sensor.quality === "Warning") {
+    alerts.push("⚠️ Water quality is degrading");
+  }
+
+  if (sensor.quality === "Critical") {
+    alerts.push("🚨 Water quality is critical");
+  }
+
   return (
     <div className={darkMode ? "app dark" : "app light"}>
+
+      {/* ✅ ALERT BANNER */}
+      {alerts.length > 0 && (
+        <div style={{
+          background: sensor.quality === "Critical" ? "#c0392b" : "#f39c12",
+          color: "#fff",
+          padding: "0.75rem 1.5rem",
+          fontWeight: "bold",
+          fontSize: "0.95rem"
+        }}>
+          {alerts.map((a, i) => <div key={i}>{a}</div>)}
+        </div>
+      )}
 
       {/* Header */}
       <header className="header">
