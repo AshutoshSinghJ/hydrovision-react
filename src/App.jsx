@@ -30,8 +30,20 @@ export default function App() {
     return () => clearInterval(interval);
   }, []);
 
+ const alerts = [];
+  if (sensor.temp > 32 || sensor.temp < 10) alerts.push(`⚠️ Temperature is ${sensor.temp}°C — outside safe range!`);
+  if (sensor.tds > 800) alerts.push(`⚠️ TDS is ${sensor.tds} ppm — dangerously high!`);
+  if (sensor.turbidity > 5) alerts.push(`⚠️ Turbidity is ${sensor.turbidity} NTU — water too cloudy!`);
+
   return (
     <div className={darkMode ? "app dark" : "app light"}>
+
+      {/* Alert Banner */}
+      {alerts.length > 0 && (
+        <div style={{background:"#c0392b", color:"#fff", padding:"0.75rem 1.5rem", fontWeight:"bold", fontSize:"0.95rem"}}>
+          {alerts.map((a, i) => <div key={i}>{a}</div>)}
+        </div>
+      )}
 
       {/* Header */}
       <header className="header">
